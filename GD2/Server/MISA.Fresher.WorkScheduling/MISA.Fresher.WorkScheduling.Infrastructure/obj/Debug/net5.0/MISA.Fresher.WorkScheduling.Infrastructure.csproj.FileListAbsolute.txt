@@ -1,0 +1,15 @@
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\bin\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.dll
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Infrastructure.csprojAssemblyReference.cache
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Infrastructure.AssemblyInfoInputs.cache
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Infrastructure.AssemblyInfo.cs
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\bin\Debug\net5.0\MISA.Fresher.WorkScheduling.Infrastructure.deps.json
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\bin\Debug\net5.0\MISA.Fresher.WorkScheduling.Infrastructure.dll
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\bin\Debug\net5.0\ref\MISA.Fresher.WorkScheduling.Infrastructure.dll
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\bin\Debug\net5.0\MISA.Fresher.WorkScheduling.Infrastructure.pdb
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\bin\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.pdb
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Infrastructure.csproj.CopyComplete
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Infrastructure.dll
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\obj\Debug\net5.0\ref\MISA.Fresher.WorkScheduling.Infrastructure.dll
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Infrastructure\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Infrastructure.pdb

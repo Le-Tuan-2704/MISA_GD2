@@ -1,0 +1,12 @@
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\bin\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.deps.json
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\bin\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.dll
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\bin\Debug\net5.0\ref\MISA.Fresher.WorkScheduling.Core.dll
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\bin\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.pdb
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.csprojAssemblyReference.cache
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.AssemblyInfoInputs.cache
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.AssemblyInfo.cs
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.csproj.CoreCompileInputs.cache
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.dll
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\obj\Debug\net5.0\ref\MISA.Fresher.WorkScheduling.Core.dll
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.pdb

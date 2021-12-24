@@ -1,0 +1,20 @@
+https://www.youtube.com/watch?v=qrwbdEXxeEw
+
+https://www.positronx.io/angular-fullcalendar-create-and-display-dynamic-events/
+
+https://fullcalendar.io/demos
+
+https://angular.io/guide/setup-local
+
+https://www.youtube.com/c/DiscoDurodeRoer/search?query=calendar
+
+https://www.youtube.com/channel/UCY_iEJzJ9HKBHt6Ipl7insQ
+
+start server: json-server --watch db.json
+
+
+https://www.youtube.com/watch?v=WNKwdgr34fA
+
+https://www.youtube.com/watch?v=brb4SO-dO_k
+
+https://www.youtube.com/watch?v=QENOe4EMIQ0
