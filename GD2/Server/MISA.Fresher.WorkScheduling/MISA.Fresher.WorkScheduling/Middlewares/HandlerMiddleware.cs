@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using MISA.Fresher.WorkScheduling.Core.Entities;
+using MISA.Fresher.WorkScheduling.Core.Properties;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -44,8 +45,8 @@ namespace MISA.Fresher.WorkScheduling.Middlewares
             var result = JsonConvert.SerializeObject(
                 new ApiReturn
                 {
-                    UserMsg = "a",
-                    ErrorCode = "a",
+                    UserMsg = Resources.MISA_ResponseMessage_Default,
+                    ErrorCode = Core.Enums.MISAEnum.UnexpectedError.ToString(),
                     DevMsg = e.Message,
                     TraceId = context?.TraceIdentifier,
                     MoreInfo = e.Source

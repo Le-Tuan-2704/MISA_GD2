@@ -155,7 +155,6 @@ namespace MISA.Fresher.WorkScheduling.Core.Services
                     return _serviceResult;
                 }
 
-
                 //Lấy dữ liệu từ repository
                 var en = await _baseRepository.GetById(tEntityId);
 

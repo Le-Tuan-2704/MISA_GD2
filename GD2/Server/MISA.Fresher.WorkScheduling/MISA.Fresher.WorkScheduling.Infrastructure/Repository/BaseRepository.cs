@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
+using MISA.Fresher.WorkScheduling.Core.Enums;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -52,20 +53,27 @@ namespace MISA.Fresher.WorkScheduling.Infrastructure.Repository
         {
             var rowsAffected = 0;
 
-            using (var transaction = _sqlConnection.BeginTransaction())
+
+            var properties = tEntity.GetType().GetProperties();
+            var parameters = new DynamicParameters();
+            foreach (var property in properties)
             {
-                try
+                // Lấy tên của property
+                var propertyName = property.Name;
+                // Lấy ra giá trị của property
+                var propertyValue = property.GetValue(tEntity);
+                // Lấy ra kiểu dữ liệu của property
+                var propertyType = property.PropertyType;
+
+                if ((propertyType == typeof(Guid) || propertyType == typeof(Guid?)))
                 {
-                    var parameters = MappingDbType(tEntity);
-                    rowsAffected = await _sqlConnection.ExecuteAsync($"Proc_Insert{_tableName}", parameters, commandType: CommandType.StoredProcedure, transaction: transaction);
-                    transaction.Commit();
+                    propertyValue = Guid.NewGuid();
                 }
-                catch (Exception)
-                {
-                    transaction.Rollback();
-                    throw;
-                }
+
+                parameters.Add($"@p_{propertyName}", propertyValue);
+
             }
+            rowsAffected = await _sqlConnection.ExecuteAsync($"Proc_Insert{_tableName}", parameters, commandType: CommandType.StoredProcedure);
 
             return rowsAffected;
         }
@@ -98,55 +106,30 @@ namespace MISA.Fresher.WorkScheduling.Infrastructure.Repository
         {
             var rowsAffected = 0;
 
-            using (var transaction = _sqlConnection.BeginTransaction())
+            var properties = tEntity.GetType().GetProperties();
+            var parameters = new DynamicParameters();
+            foreach (var property in properties)
             {
-                try
+                // Lấy tên của property
+                var propertyName = property.Name;
+                // Lấy ra giá trị của property
+                var propertyValue = property.GetValue(tEntity);
+                // Lấy ra kiểu dữ liệu của property
+                var propertyType = property.PropertyType;
+
+                if ((propertyType == typeof(Guid) || propertyType == typeof(Guid?)))
                 {
-                    var parameters = MappingDbType(tEntity);
-                    rowsAffected = await _sqlConnection.ExecuteAsync($"Proc_Update{_tableName}", parameters, commandType: CommandType.StoredProcedure, transaction: transaction);
-                    transaction.Commit();
+                    propertyValue = tEntiyId;
                 }
-                catch (Exception)
-                {
-                    transaction.Rollback();
-                    throw;
-                }
+
+                parameters.Add($"@p_{propertyName}", propertyValue);
+
             }
+            rowsAffected = await _sqlConnection.ExecuteAsync($"Proc_Update{_tableName}", parameters, commandType: CommandType.StoredProcedure);
 
             return rowsAffected;
         }
 
-        /// <summary>
-        /// Map dữ liệu của 1 entity sang thành dynamic parameters dùng cho truy vấn SQL
-        /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <param name="entity"></param>
-        /// <returns>dynamic parameters đã được format đúng</returns>
-        protected DynamicParameters MappingDbType<TEntity>(TEntity entity)
-        {
-            var properties = entity.GetType().GetProperties();
-            var parameters = new DynamicParameters();
-            foreach (var property in properties)
-            {
-                var propertyName = property.Name;
-                var propertyValue = property.GetValue(entity);
-                var propertyType = property.PropertyType;
-                if (propertyName == "EntityState")
-                {
-                    continue;
-                }
-                else if (propertyType == typeof(Guid) || propertyType == typeof(Guid?))
-                {
-                    parameters.Add($"@{propertyName}", propertyValue, DbType.String);
-                }
-                else
-                {
-                    parameters.Add($"@{propertyName}", propertyValue);
-                }
-            }
-
-            return parameters;
-        }
         #endregion
     }
 }
