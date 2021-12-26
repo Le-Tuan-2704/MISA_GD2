@@ -30,109 +30,122 @@ namespace MISA.Fresher.WorkScheduling.Infrastructure.Repository
 
 
         #region Methods
-        public List<TEntity> GetAll()
+        async public Task<IEnumerable<TEntity>> GetAll()
         {
             var query = $"select * from {_tableName} ORDER BY createdDate DESC";
-            var tEntiy = _sqlConnection.Query<TEntity>(query, commandType: CommandType.Text);
+            var tEntiy = await _sqlConnection.QueryAsync<TEntity>(query, commandType: CommandType.Text);
             return tEntiy.ToList();
         }
 
-        public TEntity GetById(Guid tEntityId)
+        public async virtual Task<TEntity> GetById(Guid tEntityId)
         {
             // lấy dữ liệu
             var sqlCommand = $"select * from {_tableName} where {_tableName}Id = @{_tableName}Id";
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add($"@{_tableName}Id", tEntityId);
             //QueryFirstOrDefault: Lấy bản ghi đầu tiên từ câu lệnh try vấn., nếu ko có trả về null;
-            var tEntiy = _sqlConnection.QueryFirstOrDefault<TEntity>(sqlCommand, param: parameters);
+            var tEntiy = await _sqlConnection.QueryFirstOrDefaultAsync<TEntity>(sqlCommand, param: parameters);
             return tEntiy;
         }
-        public int Insert(TEntity tEntity)
+
+        public async virtual Task<int> Insert(TEntity tEntity)
         {
-            //Khai bái chuỗi SQL động;
-            var sqlColumDynamic = "";
-            var sqlParamDynamic = "";
-            var dynamicParams = new DynamicParameters();
-            // Lấy ra các properties của đối tượng
-            var props = tEntity.GetType().GetProperties();
-            // Duyệt từng property
-            foreach (var prop in props)
+            var rowsAffected = 0;
+
+            using (var transaction = _sqlConnection.BeginTransaction())
             {
-                // Lấy tên của property
-                var propName = prop.Name;
-                // Lấy ra giá trị của property
-                var propValue = prop.GetValue(tEntity);
-                // Lấy ra kiểu dữ liệu của property
-                var propType = prop.PropertyType;
-
-                if (propName == $"{_tableName}Id" && propType == typeof(Guid))
+                try
                 {
-                    propValue = Guid.NewGuid();
+                    var parameters = MappingDbType(tEntity);
+                    rowsAffected = await _sqlConnection.ExecuteAsync($"Proc_Insert{_tableName}", parameters, commandType: CommandType.StoredProcedure, transaction: transaction);
+                    transaction.Commit();
                 }
-
-                //Bổ sung vào chuổi Colum động
-                sqlColumDynamic += $"{propName},";
-                sqlParamDynamic += $"@{propName},";
-                dynamicParams.Add($"@{propName}", propValue);
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
             }
 
-            // căt dấu phẩy cuối cùng
-            sqlColumDynamic = sqlColumDynamic.Substring(0, sqlColumDynamic.Length - 1);
-            sqlParamDynamic = sqlParamDynamic.Substring(0, sqlParamDynamic.Length - 1);
-            var sqlDynamic = $"INSERT INTO {_tableName}({sqlColumDynamic}) VALUES({sqlParamDynamic})";
-
-            var res = _sqlConnection.Execute(sqlDynamic, param: dynamicParams, commandType: System.Data.CommandType.Text);
-            return res;
+            return rowsAffected;
         }
-        public int Delete(string PotentialCustomerId)
+        public async virtual Task<int> Delete(string PotentialCustomerId)
         {
-            var sqlCheckCustomerCode = $"delete from {_tableName} where @PotentialCustomerId LIKE CONCAT('%',PotentialCustomerId,'%')";
-            var paramCode = new DynamicParameters();
-            paramCode.Add("@PotentialCustomerId", PotentialCustomerId);
-            var res = _sqlConnection.Execute(sqlCheckCustomerCode, paramCode);
-            return res;
-        }
+            var rowsAffected = 0;
 
-        public int Update(Guid tEntiyId, TEntity tEntity)
-        {
-            //Khai bái chuỗi SQL động;
-            var sqlColumDynamic = "";
-            var sqlParamDynamic = "";
-            var sqlUpdate = "";
-            var dynamicParams = new DynamicParameters();
-            // Lấy ra các properties của đối tượng
-            var props = tEntity.GetType().GetProperties();
-            // Duyệt từng property
-            foreach (var prop in props)
+            using (var transaction = _sqlConnection.BeginTransaction())
             {
-                // Lấy tên của property
-                var propName = prop.Name;
-                // Lấy ra giá trị của property
-                var propValue = prop.GetValue(tEntity);
-                // Lấy ra kiểu dữ liệu của property
-                var propType = prop.PropertyType;
+                try
+                {
+                    var query = $"DELETE FROM {_tableName} WHERE {_tableName}Id = '{PotentialCustomerId}'";
 
+                    //Thực thi commandText
+                    rowsAffected = await _sqlConnection.ExecuteAsync(query, commandType: CommandType.Text, transaction: transaction);
 
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
 
-                if (propName == $"{_tableName}Id" && propType == typeof(Guid))
+            return rowsAffected;
+        }
+
+        public async Task<int> Update(Guid tEntiyId, TEntity tEntity)
+        {
+            var rowsAffected = 0;
+
+            using (var transaction = _sqlConnection.BeginTransaction())
+            {
+                try
+                {
+                    var parameters = MappingDbType(tEntity);
+                    rowsAffected = await _sqlConnection.ExecuteAsync($"Proc_Update{_tableName}", parameters, commandType: CommandType.StoredProcedure, transaction: transaction);
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+
+            return rowsAffected;
+        }
+
+        /// <summary>
+        /// Map dữ liệu của 1 entity sang thành dynamic parameters dùng cho truy vấn SQL
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity"></param>
+        /// <returns>dynamic parameters đã được format đúng</returns>
+        protected DynamicParameters MappingDbType<TEntity>(TEntity entity)
+        {
+            var properties = entity.GetType().GetProperties();
+            var parameters = new DynamicParameters();
+            foreach (var property in properties)
+            {
+                var propertyName = property.Name;
+                var propertyValue = property.GetValue(entity);
+                var propertyType = property.PropertyType;
+                if (propertyName == "EntityState")
                 {
                     continue;
                 }
-                dynamicParams.Add($"@{propName}", propValue);
-                //Bổ sung vào chuổi Colum động
-                sqlColumDynamic = $"{propName}";
-                sqlParamDynamic = $"@{propName}";
-                sqlUpdate += $"{sqlColumDynamic}={sqlParamDynamic},";
-
+                else if (propertyType == typeof(Guid) || propertyType == typeof(Guid?))
+                {
+                    parameters.Add($"@{propertyName}", propertyValue, DbType.String);
+                }
+                else
+                {
+                    parameters.Add($"@{propertyName}", propertyValue);
+                }
             }
 
-            // căt dấu phẩy cuối cùng
-            sqlUpdate = sqlUpdate.Substring(0, sqlUpdate.Length - 1);
-
-            var sqlDynamic = $"UPDATE {_tableName} SET {sqlUpdate} Where PotentialCustomerId = @PotentialCustomerId";
-            dynamicParams.Add($"@PotentialCustomerId", tEntiyId);
-            var res = _sqlConnection.Execute(sqlDynamic, param: dynamicParams, commandType: System.Data.CommandType.Text);
-            return res;
+            return parameters;
         }
         #endregion
     }

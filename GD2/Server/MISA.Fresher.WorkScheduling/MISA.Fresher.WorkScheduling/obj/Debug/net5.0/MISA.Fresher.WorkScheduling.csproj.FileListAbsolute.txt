@@ -55,3 +55,6 @@ D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling\
 D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
 D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling\bin\Debug\net5.0\BCrypt.Net-Next.dll
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

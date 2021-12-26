@@ -35,13 +35,23 @@ namespace MISA.Fresher.WorkScheduling
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200");
+                    });
                 options.AddPolicy("CorsPolicy",
                     builder =>
                     {
                         builder.AllowAnyOrigin()
                                 .AllowAnyMethod()
-                                .AllowAnyHeader();
-                    }));
+                                .AllowAnyHeader()
+                                .WithOrigins("http://localhost:4200");
+                    });
+            });
+
+
 
             services.AddControllers();
 
@@ -73,9 +83,6 @@ namespace MISA.Fresher.WorkScheduling
 
             /*services.AddScoped<IAuthService , AuthService>();*/
             services.AddScoped<IAuthRepository, AuthRepository>();
-
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,7 +99,7 @@ namespace MISA.Fresher.WorkScheduling
 
             app.UseRouting();
 
-            app.UseCors();
+            app.UseCors("CorsPolicy");
 
             app.UseMiddleware<HandlerMiddleware>();
 

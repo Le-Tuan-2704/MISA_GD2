@@ -72,8 +72,8 @@ export class MCalendarComponent implements OnInit {
     };
 
     this.calendarHttp.getCalendar().subscribe((datas) => {
-      console.log(datas);
-      this.calendarOptions.events = datas;
+      console.log(datas.data);
+      this.calendarOptions.events = datas.data;
     })
   }
 

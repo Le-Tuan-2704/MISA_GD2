@@ -35,9 +35,9 @@ namespace MISA.Fresher.WorkScheduling.Controllers.Api
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public Task<IActionResult> Get()
+        public async Task<IActionResult> Get()
         {
-            var serviceResult = _baseService.GetAll();
+            var serviceResult = await _baseService.GetAll();
 
             return Ok(serviceResult);
 
@@ -50,17 +50,11 @@ namespace MISA.Fresher.WorkScheduling.Controllers.Api
         /// <param name="tEntityId"></param>
         /// <returns></returns>
         [HttpGet("{tEntityId}")]
-        public IActionResult Get(Guid tEntityId)
+        public async Task<IActionResult> Get(Guid tEntityId)
         {
-            try
-            {
-                var serviceResult = _baseService.GetById(tEntityId);
-                return StatusCode(200, serviceResult);
-            }
-            catch (Exception ex)
-            {
-                return HandleException(ex);
-            }
+            var res = await _baseService.GetById(tEntityId);
+
+            return Ok(res);
         }
 
         /// <summary>
@@ -70,26 +64,11 @@ namespace MISA.Fresher.WorkScheduling.Controllers.Api
         /// <param name="tEntity"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Post(TEntity tEntity)
+        public async Task<IActionResult> Post(TEntity tEntity)
         {
-            try
-            {
-                var serviceResult = _baseService.Insert(tEntity);
-                if (serviceResult.SuccessState)
-                {
-                    return StatusCode(201, serviceResult);
-                }
-                else
-                {
-                    return BadRequest(serviceResult);
-                }
+            var res = await _baseService.Insert(tEntity);
 
-            }
-            catch (Exception ex)
-            {
-
-                return HandleException(ex);
-            }
+            return Ok(res);
         }
 
         /// <summary>
@@ -100,26 +79,12 @@ namespace MISA.Fresher.WorkScheduling.Controllers.Api
         /// <param name="tEntity"></param>
         /// <returns></returns>
         [HttpPut("{tEntityId}")]
-        public IActionResult Update(Guid tEntityId, [FromBody] TEntity tEntity)
+        public async Task<IActionResult> Update(Guid tEntityId, [FromBody] TEntity tEntity)
         {
-            try
-            {
-                var serviceResult = _baseService.Update(tEntityId, tEntity);
-                if (serviceResult.SuccessState)
-                {
-                    return StatusCode(201, serviceResult);
-                }
-                else
-                {
-                    return BadRequest(serviceResult);
-                }
+            var res = await _baseService.Update(tEntityId, tEntity);
 
-            }
-            catch (Exception ex)
-            {
+            return Ok(res);
 
-                return HandleException(ex);
-            }
         }
 
         /// <summary>
@@ -129,41 +94,14 @@ namespace MISA.Fresher.WorkScheduling.Controllers.Api
         /// <param name="tEntityId"></param>
         /// <returns></returns>
         [HttpDelete("{tEntityId}")]
-        public IActionResult Delete(string tEntityId)
+        public async Task<IActionResult> Delete(string tEntityId)
         {
-            try
-            {
-                var serviceResult = _baseService.Delete(tEntityId);
-                if (serviceResult.SuccessState)
-                {
-                    return StatusCode(201, serviceResult);
-                }
-                else
-                {
-                    return BadRequest(serviceResult);
-                }
 
-            }
-            catch (Exception ex)
-            {
+            var res = await _baseService.Delete(tEntityId);
 
-                return HandleException(ex);
-            }
-        }
-
-        /// <summary>
-        /// thông tin trả ra khi có lỗi
-        /// Lê Duy Tuân 22/12/2021
-        /// </summary>
-        /// <param name="ex"></param>
-        /// <returns></returns>
-        protected ObjectResult HandleException(Exception ex)
-        {
-            _service.DevMsg = ex.Message;
-            _service.UserMsg = "";
-            _service.SuccessState = false;
-            return StatusCode(404, _service);
+            return Ok(res);
         }
         #endregion
+
     }
 }

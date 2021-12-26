@@ -10,3 +10,5 @@ D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.
 D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.dll
 D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\obj\Debug\net5.0\ref\MISA.Fresher.WorkScheduling.Core.dll
 D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.pdb
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.Properties.Resources.resources
+D:\Work_MISA\GD2\Server\MISA.Fresher.WorkScheduling\MISA.Fresher.WorkScheduling.Core\obj\Debug\net5.0\MISA.Fresher.WorkScheduling.Core.csproj.GenerateResource.cache
