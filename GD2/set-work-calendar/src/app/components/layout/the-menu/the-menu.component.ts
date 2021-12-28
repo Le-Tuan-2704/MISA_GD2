@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-the-menu',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./the-menu.component.css']
 })
 export class TheMenuComponent implements OnInit {
+  isAuthenticated: boolean;
 
-  constructor() { }
+  isManager: boolean;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.user.subscribe(user => {
+      this.isAuthenticated = !!user;
+      this.isManager = user?.role == 1;
+    })
   }
 
 }

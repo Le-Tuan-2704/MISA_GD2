@@ -29,5 +29,7 @@ namespace MISA.Fresher.WorkScheduling.Core.Interfaces.IRepository
         /// <param name="token"></param>
         /// <returns>true lưu thành công | false lưu không thành công</returns>
         public bool saveToken(Token token);
+
+        public Task<User> GetEntityById(Guid userid);
     }
 }

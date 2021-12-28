@@ -1,0 +1,132 @@
+/* confirm */
+.m-confirm {
+    width: 500px;
+    border: 1px solid #9e9e9e;
+    border-radius: 4px;
+    padding: 0 20px;
+    margin: auto;
+  }
+  .m-confirm .m-confirm-header {
+    display: flex;
+    height: 32px;
+    align-items: flex-end;
+    justify-content: end;
+  }
+  .m-confirm .m-confirm-body h3 {
+  }
+  .m-confirm .m-confirm-footer {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin: 20px 0px;
+    margin-top: 30px;
+  }
+
+  /* hiển thị tên trường */
+  .ask-round-div{
+      position: relative;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-left: 10px;
+  }
+  .ask-round-title-div{
+      position: absolute;
+      background-color: #9e9e9e;
+      border-radius: 4px;
+      color: #fff;
+      bottom: 32px;
+      transform: translate(-50%,0);
+  }
+  .ask-round-title{
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+      width: 135px;
+  }
+  .ask-round-title-div-last{
+      width: 16px;
+      height: 16px;
+      transform: rotate(45deg);
+      background-color: #9e9e9e;
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+  }
+  
+  /* toast message */
+  .m-toast-message {
+    height: 40px;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .m-toast-message .div-firse {
+    margin: 0px 16px;
+  }
+  .m-toast-message .div-last {
+    margin-left: 16px;
+    margin-right: 12px;
+  }
+  
+  .m-toast-message-infor {
+    background-color: #4262f0;
+    border: 1px solid #4262f0;
+  }
+  .m-toast-message-warning {
+    background-color: #f07d42;
+    border: 1px solid #f07d42;
+  }
+  .m-toast-message-success {
+    background-color: #31b491;
+    border: 1px solid #31b491;
+  }
+  .m-toast-message-error {
+    background-color: #ec4141;
+    border: 1px solid #ec4141;
+  }
+  
+  /* form export */
+  .m-form-export {
+    border-radius: 4px;
+    width: 600px;
+    margin: auto;
+    background-color: #fff;
+
+  }
+  .m-form-export .m-form-export-first {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  .m-form-export .m-icon-quiz {
+    margin-right: 8px;
+  }
+  .m-form-export .m-form-export-body {
+  }
+  .m-form-export .m-form-export-last {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 10px 20px;
+    margin-top: 30px;
+    background-color: #e9e9e9;
+  }
+  .m-form-export-body {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  .m-form-export-body-cbb {
+    width: 250px !important;
+  }
+  .m-form-export-body-input {
+    width: 300px;
+  }
+  .m-form-export-body-input .m-input {
+    height: 38px;
+    border: 1px solid #d3d7de;
+  }

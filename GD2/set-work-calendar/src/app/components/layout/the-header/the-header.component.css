@@ -1,102 +1,35 @@
-.m-header{
-    height: 48px;
-    border-bottom: 1px solid #bbb;
+.m-header {
+    width: 100%;
+    height: 42px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-}
-
-.m-icon-toggle{
-    background-image: url("/assets/icon/toggle.png");
-    width: 24px;
-    height: 24px;
-    background-position: center;
-    background-size: cover;
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-.m-logo-box{
-    height: 48px;
+    align-items: center;
+  }
+  .m-header-left {
     display: flex;
     align-items: center;
-}
-
-.m-logo{
-    background-size: cover;
-    margin-left: 10px;
-    background-position: center;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.m-header-title-box{
+  }
+  .m-header-center {
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-weight: bold;
-}
-
-.m-combobox-start{
+    align-items: center;
+  }
+  .m-header-right {
     display: flex;
     align-items: center;
-}
+    margin-right: 10px;
+  }
+  .m-icon {
+    margin-left: 10px;
+  }
+  .m-icon-avatar {
+    margin-right: 10px;
+  }
 
-.m-header-title-inface{
-    width: 30px;
-    height: 30px;
-    margin-left: 24px;
+  .m-logo{
+      margin-right: 10px;
+  }
 
-    background-color: #EBF4FF;
-    color: #0075FF;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.m-header-title-inface p{
-    
-}
-
-.m-header-title-box .m-header-title{
-    color: #000;
-    margin: 0px 10px;
-}
-
-.m-header-account-box{
-    display: flex;
-    align-items: center;
-}
-
-.m-header-account-box .m-account{
-    display: flex;
-    align-items: center;
-}
-
-.m-header-account-box .m-account-img{
-    width: 24px;
-    height: 24px;
-    margin: 0 16px;
-    border-radius: 50%;
-    background-image: url("/assets/icon/avatar-default.png");
-    background-size: cover;
-    cursor: pointer;
-}
-
-.m-icon-notification{
-    width: 24px;
-    height: 24px;
-    background-image: url("/assets/icon/icon_collection.svg");
-    background-position: -72px -338px;
-    cursor: pointer;
-}
-
-.m-header-account-box .m-account-name{
-
-}
-
-.m-header-account-box .m-account-option{
-    margin: 0 16px;
-    /* background-image: url("../../assets/icon/option.png"); */
-}
+  .btn-login{
+    margin-right: 24px;
+  }

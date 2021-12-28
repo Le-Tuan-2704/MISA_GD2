@@ -1,0 +1,35 @@
+<div class="m-side-bar-right-main">
+    <div class="m-side-bar-right" *ngIf="isSideRight">
+        <div class="m-side-bar-right-first">
+            <div class="m-side-bar-right-block">
+                <div class="m-icon-phone"></div>
+            </div>
+            <div class="m-side-bar-right-block">
+                <div class="m-icon-node"></div>
+            </div>
+            <div class="m-side-bar-right-block">
+                <div class="m-icon-calendar-black"></div>
+            </div>
+            <div class="m-side-bar-right-block">
+                <div class="m-icon-mail"></div>
+            </div>
+        </div>
+        <div class="m-side-bar-right-second">
+            <div class="m-side-bar-right-second-title">Lịch Sử Giao Dịch</div>
+            <div class="m-side-bar-right-second-content">
+                <div class="m-side-bar-right-second-item">
+                    <div class="side-bar-right-item-icon">
+                        <div class="m-icon-node-ava"></div>
+                    </div>
+                    <div class="side-bar-right-item-text">
+                        <p>Ghi chú</p>
+                        <p>Nguyễn Văn Hà(A006) - 12/08/2021</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-show-slide-right" (click)="isSideRight = !isSideRight">
+        <div [ngClass]="{ 'm-icon-prev': !isSideRight, 'm-icon-next': isSideRight }"></div>
+    </div>
+</div>

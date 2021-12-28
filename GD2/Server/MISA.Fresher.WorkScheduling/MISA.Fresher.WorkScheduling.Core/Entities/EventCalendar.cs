@@ -16,7 +16,7 @@ namespace MISA.Fresher.WorkScheduling.Core.Entities
         public Guid? employeeId { get; set; }
         public Guid? approverId { get; set; }
         public Guid? groupId { get; set; }
-        public string currentStatus { get; set; }
+        public int currentStatus { get; set; }
         public DateTime? createdDate { get; set; }
         public DateTime? updatedDate { get; set; }
     }

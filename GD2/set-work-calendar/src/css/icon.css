@@ -1,0 +1,595 @@
+
+.m-bg-image{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.m-icon-close{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -320px -240px;
+}
+
+.m-icon-clean{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    display: inline-block;
+    background-position: -64px -16px;
+}
+
+.m-icon-infor{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    display: inline-block;
+    background-position: -368px -144px;
+}
+.m-icon-warning{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    display: inline-block;
+    background-position: -368px -128px;
+}
+.m-icon-success{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    display: inline-block;
+    background-position: -384px -144px;
+}
+.m-icon-error{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    display: inline-block;
+    background-position: -384px -128px;
+}
+.m-icon-x{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    display: inline-block;
+    background-position: -80px -16px;
+}
+.m-icon-x-white{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    display: inline-block;
+    background-position: -320px -473px;
+}
+
+.m-icon-quiz{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    display: inline-block;
+    background-position: -224px -0px;
+}
+
+.m-icon-search{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -32px 0px;
+}
+.m-icon-table{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -0px 0px;
+}
+
+.m-icon-reset{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -352px -32px;
+}
+
+.m-icon-next{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    background-position: -304px -32px;
+    cursor: pointer;
+}
+.m-icon-next-active{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    background-position: -32px -160px;
+    cursor: pointer;
+}
+.m-icon-dbnext{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    background-position: -128px -224px;
+    cursor: pointer;
+}
+.m-icon-prev{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    background-position: -288px -32px;
+    cursor: pointer;
+}
+.m-icon-prev-active{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    background-position: -48px -160px;
+    cursor: pointer;
+}
+.m-icon-dbprev{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    background-position: -112px -224px;
+    cursor: pointer;
+}
+.m-icon-vv{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -48px -0px;
+}
+.m-icon-bar{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -272px -160px;
+}
+.m-icon-checkbox{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -176px -16px;
+}
+.m-icon-minus{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -192px -192px;
+}
+.m-icon-add{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    background-position: -240px -128px;
+    margin-right:10px;
+}
+.m-icon-down{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    background-position: -80px -160px;
+}
+.m-icon-down-black{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    background-position: -48px -32px;
+}
+.m-icon-taggle{
+    width: 24px;
+    height: 24px;
+    background-image: url("../assets/icon/toggle.png");
+    cursor: pointer;
+}
+
+
+.m-logo {
+    width: 32px;
+    height: 32px;
+    background-image: url("../assets/images/logo.png");
+    cursor: pointer;
+    background-size: cover;
+}
+
+.m-icon-phone{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -176px -321px;
+    display: inline-block;
+}
+.m-icon-phone-green{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -320px -48px;
+    display: inline-block;
+}
+
+.m-icon-node{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -192px -321px;
+    display: inline-block;
+}
+.m-icon-node-ava{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -64px -96px;
+    display: inline-block;
+}
+.m-icon-calendar-black{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -208px -321px;
+    display: inline-block;
+}
+.m-icon-mail{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -0px -321px;
+    display: inline-block;
+}
+
+.m-icon-facebook{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -304px -288px;
+}
+
+.m-icon-block{
+    width: 24px;
+    height: 24px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -240px -408px;
+}
+.m-icon-calendar{
+    width: 24px;
+    height: 24px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -120px -338px;
+}
+
+.m-icon-notify{
+    width: 24px;
+    height: 24px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -72px -338px;
+}
+.m-icon-setting{
+    width: 24px;
+    height: 24px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -96px -338px;
+}
+.m-icon-question{
+    width: 24px;
+    height: 24px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -216px -360px;
+}
+.m-icon-ask-round{
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -224px -0px;
+}
+.m-icon-avatar{
+    width: 24px;
+    height: 24px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -144px -385px;
+}
+.m-icon-avatar-big{
+    width: 48px;
+    height: 48px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -144px -848px;
+}
+
+.m-icon-home{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -0px -272px;
+}
+
+.m-icon-home-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -0px -288px;
+}
+
+.m-icon-PotentialCustomers{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -0px -48px;
+}
+
+.m-icon-out{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    display: inline-block;
+    background-position: -96px -457px;
+}
+.m-icon-loading {
+    width: 80px;
+    height: 80px;
+    background-image: url("../assets/img/loadding.svg");
+}
+.m-icon-delete{
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -192px -128px;
+}
+.m-icon-pencil{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -128px -0px;
+    margin-right: 5px;
+}
+.m-icon-PotentialCustomers-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -160px -288px;
+}
+
+.m-icon-chaohang{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -16px -272px;
+}
+
+.m-icon-chaohang-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -16px -288px;
+}
+
+.m-icon-lienhe{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -128px -48px;
+}
+
+.m-icon-lienhe-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -176px -288px;
+}
+
+.m-icon-khachhang{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -112px -48px;
+}
+
+.m-icon-khachhang-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -224px -288px;
+}
+
+.m-icon-cohoi{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -80px -48px;
+}
+
+.m-icon-cohoi-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -160px -304px;
+}
+
+.m-icon-baogia{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -64px -48px;
+}
+
+.m-icon-baogia-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -176px -304px;
+}
+
+.m-icon-donhang{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -144px -48px;
+}
+
+.m-icon-donhang-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -160px -240px
+}
+
+.m-icon-hoadon{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -320px -176px;
+}
+
+.m-icon-hoadon-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -208px -304px;
+}
+
+.m-icon-aocohoi{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -64px -304px;
+}
+
+.m-icon-aocohoi-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -80px -304px;
+}
+
+.m-icon-hoatdong{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -128px -272px;
+}
+
+.m-icon-hoatdong-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -128px -288px;
+}
+
+.m-icon-muctieu{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -80px -272px;
+}
+
+.m-icon-muctieu-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -80px -288px;
+}
+
+.m-icon-chiendich{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -208px -48px;
+}
+
+.m-icon-chiendich-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -224px -304px;
+}
+
+.m-icon-baocao{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -32px -272px;
+}
+
+.m-icon-baocao-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -32px -288px;
+}
+
+.m-icon-khac{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -48px -272px;
+}
+
+.m-icon-khac-hover{
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/icon_collection.svg");
+    cursor: pointer;
+    background-position: -48px -288px;
+}

@@ -826,6 +826,9 @@
         }
       },
       "MISA.Fresher.WorkScheduling.Core/1.0.0": {
+        "dependencies": {
+          "BCrypt.Net-Next": "4.0.2"
+        },
         "runtime": {
           "MISA.Fresher.WorkScheduling.Core.dll": {}
         },

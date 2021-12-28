@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "eO4UCtE3F3cpUVgL/utenwcpt2OqeA3iBkEr+CtQsoRD38LbsGdPYAruDi8twtojnmqQxsC7RtbbJ4W3794svg==",
+  "dgSpecHash": "5FI9B4UqyBwlUC1ytJ1FkZJFx98CZ6Ulox++JnvgPlgHJ0cQzNFFGQhYFSUFNOt8UTgz1Lgnezf+Y71CSCufHw==",
   "success": true,
   "projectFilePath": "D:\\Work_MISA\\GD2\\Server\\MISA.Fresher.WorkScheduling\\MISA.Fresher.WorkScheduling.Infrastructure\\MISA.Fresher.WorkScheduling.Infrastructure.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\leduy\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\leduy\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\leduy\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\leduy\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",

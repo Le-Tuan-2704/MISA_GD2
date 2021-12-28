@@ -29,31 +29,85 @@ export class AuthService {
      */
   login(username: string, password: string) {
     return this.http
-      .post<AppServerResponse<AuthResponseData>>(
-        this.baseRoute + '/login',
-        {
-          username: username,
-          password: password,
-        }
+      .get<AppServerResponse<AuthResponseData>>(
+        this.baseRoute + `/login?userName=${username}&password=${password}`,
       )
       .pipe(
         catchError(errorRes => {
           return this.handleError(errorRes);
         }),
         tap(resData => {
-          if (resData.success) {
+          console.log(resData);
+
+          if (resData.successState) {
             this.handleAuthentication(
-              resData.data.user.email,
               resData.data.user.userId,
               resData.data.user.username,
-              resData.data.user.employeeId,
               resData.data.user.avatar,
+              resData.data.user.role,
               resData.data.accessToken,
             );
           }
         }),
 
       )
+  }
+
+  /**
+    * Tự động đăng nhập lại
+    */
+  autoLogin() {
+    //Lấy userData từ local storage
+    const userData = JSON.parse(localStorage.getItem('userData'));
+
+    if (!userData) {
+      return;
+    }
+
+    //Cast sang dạng User
+    const loadedUser = new User(
+      userData['userId'],
+      userData['username'],
+      userData['avatar'],
+      userData['role'],
+      userData['_accessToken'],
+      new Date(userData['_accessTokenExpDate'])
+    )
+
+    //Nếu token không hợp lệ thì thử refresh lại token
+    if (new Date().getTime() > loadedUser.accessTokenExpDate.getTime()
+      || !loadedUser.accessTokenExpDate
+      || !loadedUser.accessToken
+    ) {
+      this.logout();
+    } else {
+      if (loadedUser.accessToken) {
+        //gán user mới tạo
+        this.user.next(loadedUser);
+      }
+    }
+  }
+
+  /**
+     * Thoát đăng nhập
+     */
+  logout() {
+
+    //Set lại người dùng về null    
+    this.user.next(null);
+
+    //Xóa khỏi localStorage
+    localStorage.removeItem('userData');
+
+    //Clear timer
+    if (this.tokenExperationTimer) {
+      clearTimeout(this.tokenExperationTimer);
+    }
+
+    this.tokenExperationTimer = null
+
+    //Quay về trang đăng nhập
+    this.router.navigate(['auth']);
   }
 
   /**
@@ -80,26 +134,19 @@ export class AuthService {
      * @param refreshToken 
      */
   private handleAuthentication(
-    email: string,
     userId: string,
     username: string,
-    employeeId: string,
     avatar: string,
+    role: number,
     accessToken: string,
   ) {
     let decodedToken = jwtDecode(accessToken);
-
     let accessExpiresTime = +decodedToken['exp'] * 1000;
-
-
     const accessTokenExpDate = new Date(accessExpiresTime)
-
     //Tạo user mới dựa trên thông tin ở trên
-    const user = new User(userId, username, email, employeeId, avatar, accessToken, accessTokenExpDate);
-
+    const user = new User(userId, username, avatar, role, accessToken, accessTokenExpDate);
     //Set người dùng mới
     this.user.next(user);
-
     //Lưu vào localStorage
     localStorage.setItem('userData', JSON.stringify(user));
   }

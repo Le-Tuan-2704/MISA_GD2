@@ -14,7 +14,7 @@ namespace MISA.Fresher.WorkScheduling.Core.Services
     public class BaseService<TEntity> : IBaseService<TEntity>
     {
         protected IBaseRepository<TEntity> _baseRepository;
-        protected ServiceResult _serviceResult;
+        private ServiceResult _serviceResult;
 
         public BaseService(IBaseRepository<TEntity> baseRepository)
         {
@@ -32,34 +32,14 @@ namespace MISA.Fresher.WorkScheduling.Core.Services
         {
             try
             {
-                //kiểm tra id là guid
-                if (!CheckGuid($"id", tEntityId))
+                _serviceResult.SuccessState = true;
+                _serviceResult.Data = await _baseRepository.Delete(tEntityId);
+
+                if (int.Parse(_serviceResult.Data.ToString()) <= 0)
                 {
-                    return _serviceResult;
+                    _serviceResult = RowAffectingUnexpectedFailureResponse();
                 }
 
-                var parsedId = Guid.Parse(tEntityId);
-
-                //lấy enity từ repository
-                var entity = await _baseRepository.GetById(parsedId);
-
-                if (entity == null)
-                {
-                    _serviceResult.SuccessState = false;
-                    _serviceResult.DevMsg = string.Format(Properties.Resources.MISA_ResponseMessage_RecordIdNotExists, tEntityId);
-                    _serviceResult.UserMsg = string.Format(Properties.Resources.MISA_ResponseMessage_RecordIdNotExists, tEntityId);
-                    _serviceResult.MISACode = Enums.MISAEnum.NotValid;
-                }
-                else
-                {
-                    _serviceResult.SuccessState = true;
-                    _serviceResult.Data = await _baseRepository.Delete(parsedId.ToString());
-
-                    if (int.Parse(_serviceResult.Data.ToString()) <= 0)
-                    {
-                        _serviceResult = RowAffectingUnexpectedFailureResponse();
-                    }
-                }
                 return _serviceResult;
             }
             catch (Exception ex)
@@ -124,6 +104,8 @@ namespace MISA.Fresher.WorkScheduling.Core.Services
                     return _serviceResult;
                 }
 
+
+
                 _serviceResult.SuccessState = true;
                 _serviceResult.Data = await _baseRepository.Insert(tEntity);
                 _serviceResult.MISACode = Enums.MISAEnum.IsValid;
@@ -167,11 +149,17 @@ namespace MISA.Fresher.WorkScheduling.Core.Services
                     return _serviceResult;
                 }
 
+                var idValidRole = await ValidUpdate(en, tEntity);
+
                 //validate entity
                 var isValid = await Validate(tEntity);
 
-                if (!isValid)
+                if (!isValid || !idValidRole)
                 {
+                    _serviceResult.SuccessState = false;
+                    _serviceResult.DevMsg = string.Format(Properties.Resources.MISA_ResponseMessage_RecordIdNotExists, tEntityId);
+                    _serviceResult.UserMsg = string.Format(Properties.Resources.MISA_ResponseMessage_RecordIdNotExists, tEntityId);
+                    _serviceResult.MISACode = Enums.MISAEnum.NotValid;
                     return _serviceResult;
                 }
 
@@ -196,6 +184,17 @@ namespace MISA.Fresher.WorkScheduling.Core.Services
             }
         }
 
+
+        /// <summary>
+        /// Validate quyền thay đổi
+        /// </summary>
+        /// <param name="entity">đối tượng cần validate</param>
+        /// <returns>true: hợp lệ | false: không hợp lệ</returns>
+        protected async virtual Task<bool> ValidUpdate(TEntity entity, TEntity entityRole)
+        {
+            var isValid = true;
+            return isValid;
+        }
 
         /// <summary>
         /// Validate dữ liệu

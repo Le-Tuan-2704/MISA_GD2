@@ -7,9 +7,8 @@ export class User {
     constructor(
         public id: string,
         public username: string,
-        public email: string,
-        public employeeId: string,
         public avatar: string,
+        public role: number,
 
         private _accessToken: string,
         private _accessTokenExpDate: Date,
@@ -25,11 +24,5 @@ export class User {
 
     get accessTokenExpDate() {
         return this._accessTokenExpDate;
-    }
-
-    get getRole() {
-        // Lấy role bằng cách decode token
-        let decodedToken = jwtDecode(this._accessToken);
-        return decodedToken['role'];
     }
 }

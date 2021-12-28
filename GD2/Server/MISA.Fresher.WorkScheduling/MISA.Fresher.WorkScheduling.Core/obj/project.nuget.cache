@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "RR2bwrVC/oO2/JfrJ4mPXsNHtAIZCIuJID+hh2vejJNo4tQ/pvdNuryv020fr//4Xad6cZn/WCCcQ87BSd/Njw==",
+  "dgSpecHash": "SkdxUv0dzL9PGBSwnw41Xa4+kjqhOXXmcRWJoDJbtVlcGlP7YnSF7BXycBwBC8/OLf8X/ghISxL+WwjJnz1HtQ==",
   "success": true,
   "projectFilePath": "D:\\Work_MISA\\GD2\\Server\\MISA.Fresher.WorkScheduling\\MISA.Fresher.WorkScheduling.Core\\MISA.Fresher.WorkScheduling.Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\leduy\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -14,6 +14,7 @@ using BCryptNet = BCrypt.Net.BCrypt;
 using System.Text;
 using System.Threading.Tasks;
 using MISA.Fresher.WorkScheduling.Core.Interfaces.IRepository;
+using MISA.Fresher.WorkScheduling.Core.Interfaces.IServices;
 
 namespace MISA.Fresher.WorkScheduling.Controllers.Api
 {
@@ -22,55 +23,55 @@ namespace MISA.Fresher.WorkScheduling.Controllers.Api
     public class AuthController : ControllerBase
     {
         private IConfiguration _config;
+        private readonly IAuthService _authService;
         private IAuthRepository _authRepository;
 
-        public AuthController(IConfiguration config, IAuthRepository authRepository)
+        public AuthController(IAuthService authService, IConfiguration config, IAuthRepository authRepository)
         {
+            _authService = authService;
             _config = config;
             _authRepository = authRepository;
         }
 
 
-
+        [AllowAnonymous]
         [HttpGet("login")]
-        public IActionResult Login(string userName, string password)
+        async public Task<IActionResult> Login(string userName, string password)
         {
-            User login = new User();
-            login.userName = userName;
-            login.password = password;
+            //Gọi service xác thực tài khoản
+            var response = await _authService.Authenticate(userName, password);
 
-            if (login.userName == "" || login.userName == null || login.password == "" || login.password == null)
+            //Tài khoản hợp lệ
+            if (response.SuccessState)
             {
-                return Ok("các trường không được phép null");
+                var user = response.Data as User;
 
+                //Tạo token mới từ user nhận được
+                var tokenString = GenerteJSONWebToken(user);
+
+                var token = new Token(tokenString, user.idUser);
+
+                var addRes = _authRepository.saveToken(token);
+
+                if (addRes)
+                {
+                    response.Data = new
+                    {
+                        user = user,
+                        accessToken = tokenString,
+                    };
+                    return Ok(response);
+                }
+                else
+                {
+                    return Ok(response);
+                }
             }
-
-            User userLogin = _authRepository.CheckDuplicateName(userName);
-
-            if (userLogin == null)
-            {
-                return Ok("userName không tồn tại");
-            }
-
-
-            if (!BCryptVerify(login.password, userLogin.password))
-            {
-                return Ok("password không đúng");
-            }
-
-            IActionResult response = Unauthorized();
-
-            var tokenStr = GenerteJSONWebToken(userLogin);
-            var token = new Token(tokenStr, userLogin.idUser);
-            if (_authRepository.saveToken(token))
-            {
-                response = Ok(new { token = tokenStr });
-            }
+            //Tài khoản không hợp lệ
             else
             {
-                response = Ok("error save token");
+                return Ok(response);
             }
-            return response;
         }
 
         private string GenerteJSONWebToken(User userInfo)
@@ -80,114 +81,87 @@ namespace MISA.Fresher.WorkScheduling.Controllers.Api
 
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, userInfo.role.ToString()),
-                new Claim(JwtRegisteredClaimNames.Jti, userInfo.idUser.ToString())
+
+                new Claim(JwtRegisteredClaimNames.Sub, (userInfo?.userName)??""),
+                new Claim("id", (userInfo?.idUser.ToString())??""),
+                new Claim(ClaimTypes.Role, ((int) (userInfo?.role ?? (int)Core.Enums.Role.EMPLOYEE)).ToString()),
+                new Claim("role", ((int) (userInfo?.role ?? (int)Core.Enums.Role.EMPLOYEE)).ToString()),
+                new Claim("date", (DateTime.Now.ToString())),
+                new Claim(JwtRegisteredClaimNames.Jti, (Guid.NewGuid().ToString()))
             };
 
+
             var token = new JwtSecurityToken(
-                issuer: _config["Jwt:Issuer"],
-                audience: _config["Jwt:Issuer"],
-                claims,
-                expires: DateTime.Now.AddDays(2),
-                signingCredentials: credentials);
-            var encodetoke = new JwtSecurityTokenHandler().WriteToken(token);
-            return encodetoke;
+              issuer: _config["Jwt:Issuer"],
+              audience: _config["Jwt:Issuer"],
+              claims,
+              notBefore: DateTime.Now,
+              expires: DateTime.Now.AddDays(2),
+              signingCredentials: credentials
+              );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
 
         [HttpGet("registration")]
-        public IActionResult Registration(string userName, string password)
+        public async Task<IActionResult> Registration(string userName, string password)
         {
-            User login = new User();
-            login.idUser = Guid.NewGuid();
-            login.userName = userName;
-            login.password = password;
 
-            if (login.userName == "" || login.userName == null || login.password == "" || login.password == null)
+            var response = await _authService.Registration(userName, password);
+
+            if (response.SuccessState)
             {
-                return Ok("các trường không được phép null");
-
-            }
-
-            if (_authRepository.CheckDuplicateName(userName) == null)
-            {
-                login.role = 1;
-                login.password = BcryptHash(login.password);
-
-                if (_authRepository.createUser(login))
-                {
-                    return Ok(login);
-                }
-                return Ok("error");
+                return Ok(response);
             }
             else
             {
-                return Ok("userName đã tồn tại");
+                return BadRequest(response);
             }
-
-
         }
 
-
+        /// <summary>
+        /// Lấy ra user tương ứng với access token hiện tại
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
-        [HttpPost("post")]
-        public IActionResult User([FromBody] User test)
+        [HttpGet]
+        async public Task<IActionResult> Get()
         {
-            if (test.userName == "" || test.userName == null || test.password == "" || test.password == null)
+            var res = await _authService.GetUserById(HttpContext.User.FindFirstValue("id"));
+
+            if (!res.SuccessState)
             {
-                return BadRequest(test);
+                return Unauthorized(res);
             }
 
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-            IList<Claim> claim = identity.Claims.ToList();
-            var userName = claim[0].Value;
-            test.password = Sha256Hash(test.password);
-            return Ok(claim[0].Value + " " + claim[1].Value);
+            return Ok(res);
         }
 
-        [Authorize]
-        [HttpGet("get")]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return new string[] { "Value1", "Value2", "Value3" };
-        }
+        /*
+                [Authorize]
+                [HttpPost("post")]
+                public IActionResult User([FromBody] User test)
+                {
+                    if (test.userName == "" || test.userName == null || test.password == "" || test.password == null)
+                    {
+                        return BadRequest(test);
+                    }
 
-        /// <summary>
-        /// Băm theo SHA256
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns>Hashed string</returns>
-        public static string Sha256Hash(string value)
-        {
-            var crypt = new System.Security.Cryptography.SHA256Managed();
-            var hash = new System.Text.StringBuilder();
-            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(value));
-            foreach (byte theByte in crypto)
-            {
-                hash.Append(theByte.ToString("x2"));
-            }
-            return hash.ToString();
-        }
+                    var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    IList<Claim> claim = identity.Claims.ToList();
+                    var userName = claim[0].Value;
+                    test.password = Sha256Hash(test.password);
+                    return Ok(claim[0].Value + " " + claim[1].Value);
+                }
 
-        /// <summary>
-        /// Hash theo BCrypt
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns>String đã được hash</returns>
-        public static string BcryptHash(string value)
-        {
-            return BCryptNet.HashPassword(value);
-        }
+                [Authorize]
+                [HttpGet("get")]
+                public ActionResult<IEnumerable<string>> Get()
+                {
+                    return new string[] { "Value1", "Value2", "Value3" };
+                }
+        */
 
-        /// <summary>
-        /// Kiểm tra bcrypt
-        /// </summary>
-        /// <param name="password"></param>
-        /// <param name="hashedPassword"></param>
-        /// <returns>true is ok| false not ok</returns>
-        public static bool BCryptVerify(string password, string hashedPassword)
-        {
-            return BCryptNet.Verify(password, hashedPassword);
-        }
     }
 }

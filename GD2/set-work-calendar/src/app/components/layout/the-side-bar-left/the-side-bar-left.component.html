@@ -1,0 +1,20 @@
+<div class="m-side-bar-left-main">
+    <div class="m-side-bar-left" *ngIf="isSideLeft">
+        <div class="m-side-bar">
+            <div class="m-boloc">BỘ LỌC ĐÃ LƯU</div>
+            <div class="m-boloc-search">
+                <span>LỌC TIỀM NĂNG THEO</span>
+                <div class="m-icon-search"></div>
+            </div>
+        </div>
+        <div class="m-box-button-left">
+            <div class="m-button m-button-simple">Bỏ lọc</div>
+            <div class="m-button m-button-primaty">
+                Áp dụng
+            </div>
+        </div>
+    </div>
+    <div class="m-show-slide-left" (click)="isSideLeft = !isSideLeft">
+        <div [ngClass]="{'m-icon-prev': isSideLeft, 'm-icon-next': !isSideLeft}"></div>
+    </div>
+</div>

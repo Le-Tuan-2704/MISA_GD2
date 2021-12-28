@@ -1,5 +1,5 @@
 export interface AppServerResponse<T> {
-    success: boolean,
+    successState: boolean,
     data: T,
     userMsg: string,
     devMsg: string

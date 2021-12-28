@@ -1,0 +1,79 @@
+.m-fuction {
+    width: 100%;
+    height: 64px;
+    background-color: #d3d7de;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .m-fuction-left {
+    display: flex;
+    align-items: center;
+  }
+  .m-fuction-left .m-sua {
+    display: flex;
+    align-items: center;
+  }
+  .m-fuction-left .m-sua span {
+    color: #4262f0;
+    margin: 0 10px;
+  }
+  .m-fuction-left-title {
+    font-weight: bold;
+    margin: 0 10px;
+  }
+  
+  .m-fuction-right {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+  }
+  
+  .m-button-group {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .m-button-group-bar .m-button {
+    border: none;
+  }
+  
+  .m-button-group-add .m-button {
+    border-radius: none;
+    border: none;
+    padding: 0px 10px;
+  }
+  
+  .m-button-group-add .m-button-add {
+    border-right: 1px solid #e9e9e9;
+  }
+  .m-function-active {
+    position: relative;
+  }
+  .m-function-select {
+    background-color: #fff;
+    position: absolute;
+    border-radius: 4px;
+    z-index: 100;
+    padding: 8px 0;
+    left: 0;
+  }
+  .m-function-item {
+    height: 32px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0px 8px;
+  }
+  .m-function-item:hover {
+    background-color: #e9e9e9;
+  }
+  .m-function-item div {
+    margin: 0px 10px;
+  }
+  .m-fuction-simple .m-button-simple {
+    padding: 0px 10px;
+  }

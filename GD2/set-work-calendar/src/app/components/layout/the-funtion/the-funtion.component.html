@@ -1,0 +1,53 @@
+<div class="m-fuction m-fuction-simple">
+
+    <div class="m-fuction-left" v-else>
+        <div class="m-fuction-left-title">Đã chọn </div>
+        <div class="m-sua">
+            <div class="m-icon-reset"></div>
+            <span>Bỏ chọn</span>
+
+        </div>
+        <div class="m-button m-button-simple">
+            <div class="m-icon-pencil"></div>
+            <b>Cập nhập thông tin</b>
+        </div>
+        <div class="m-function-active">
+            <div class="m-button m-button-simple" (click)="showFunction = !showFunction">
+                <div class="m-icon-vv"></div>
+            </div>
+            <div class="m-function-select" *ngIf="showFunction" (click)="showFunction = false">
+                <div class="m-function-item">
+                    <div class="m-icon-out"></div>
+                    Xuất Khẩu
+                </div>
+                <div class="m-function-item">
+                    <div class="m-icon-delete"></div>
+                    Xóa
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-fuction-right">
+        <div class="m-button-group m-button-group-add m-button-combo">
+            <div class="m-button m-button-add m-button-combo-item">
+                <div class="m-icon-add"></div>
+                Thêm
+            </div>
+
+            <div class="m-button m-button-combo-item">
+                <div class="m-icon-down"></div>
+            </div>
+        </div>
+        <div class="m-button m-button-simple">
+            <div class="m-icon-vv"></div>
+        </div>
+        <div class="m-button-group m-button-group-bar m-button-simple">
+            <div class="m-button m-button-bar">
+                <div class="m-icon-bar"></div>
+            </div>
+            <div class="m-button">
+                <div class="m-icon-down-black"></div>
+            </div>
+        </div>
+    </div>
+</div>

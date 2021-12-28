@@ -81,5 +81,15 @@ namespace MISA.Fresher.WorkScheduling.Infrastructure.Repository
             }
             return false;
         }
+
+        public async Task<User> GetEntityById(Guid userid)
+        {
+            var query = $"SELECT * FROM users WHERE idUser = '{userid}'";
+
+            //Khởi tạo commandText
+            var entity = await _sqlConnection.QueryFirstOrDefaultAsync<User>(query, commandType: CommandType.Text);
+
+            return entity;
+        }
     }
 }

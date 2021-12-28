@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MISA.Fresher.WorkScheduling.Core.Entities;
 using MISA.Fresher.WorkScheduling.Core.Enums;
 using MISA.Fresher.WorkScheduling.Core.Interfaces.IServices;
@@ -35,6 +36,7 @@ namespace MISA.Fresher.WorkScheduling.Controllers.Api
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Get()
         {
             var serviceResult = await _baseService.GetAll();
@@ -50,6 +52,7 @@ namespace MISA.Fresher.WorkScheduling.Controllers.Api
         /// <param name="tEntityId"></param>
         /// <returns></returns>
         [HttpGet("{tEntityId}")]
+        [Authorize]
         public async Task<IActionResult> Get(Guid tEntityId)
         {
             var res = await _baseService.GetById(tEntityId);
@@ -64,8 +67,10 @@ namespace MISA.Fresher.WorkScheduling.Controllers.Api
         /// <param name="tEntity"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Post(TEntity tEntity)
+        [Authorize]
+        public async virtual Task<IActionResult> Post(TEntity tEntity)
         {
+            var userId = HttpContext.User.FindFirst("id").Value;
             var res = await _baseService.Insert(tEntity);
 
             return Ok(res);
@@ -79,7 +84,8 @@ namespace MISA.Fresher.WorkScheduling.Controllers.Api
         /// <param name="tEntity"></param>
         /// <returns></returns>
         [HttpPut("{tEntityId}")]
-        public async Task<IActionResult> Update(Guid tEntityId, [FromBody] TEntity tEntity)
+        [Authorize]
+        public async virtual Task<IActionResult> Update(Guid tEntityId, [FromBody] TEntity tEntity)
         {
             var res = await _baseService.Update(tEntityId, tEntity);
 
@@ -94,6 +100,7 @@ namespace MISA.Fresher.WorkScheduling.Controllers.Api
         /// <param name="tEntityId"></param>
         /// <returns></returns>
         [HttpDelete("{tEntityId}")]
+        [Authorize]
         public async Task<IActionResult> Delete(string tEntityId)
         {
 

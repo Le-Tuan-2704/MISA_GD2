@@ -3,7 +3,7 @@ export interface AuthResponseData {
         email: string,
         userId: string,
         username: string,
-        employeeId: string,
+        role: number,
         avatar: string
     };
     accessToken: string,

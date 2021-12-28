@@ -1,0 +1,88 @@
+
+.m-side-bar-left-main {
+    position: relative;
+    border-right: 1px solid #e9e9e9;
+    height: 100%;
+  }
+.m-side-bar-left {
+    background-color: #fff;
+    height: 100%;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+  }
+  .m-side-bar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0 10px;
+    height: 0;
+    flex: 1;
+  }
+  
+  .m-boloc {
+    padding: 10px 0;
+  }
+  .m-boloc-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .m-show-slide-left {
+    width: 12px;
+    height: 40px;
+    border: 1px solid #e9e9e9;
+    border-radius: 0 8px 8px 0px;
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    cursor: pointer;
+    background-color: #fff;
+  }
+  .m-box-checkbox {
+    height: 0;
+    flex: 1;
+    overflow: auto;
+  }
+  .m-boloc-checkboxs {
+    padding: 10px;
+  }
+  
+  .m-item-search {
+    padding: 10px 0px;
+  }
+  
+  .m-item-search-checkbox {
+    display: flex;
+    align-items: center;
+  }
+  .m-item-search-checkbox .m-checkbox-custom {
+    margin-right: 10px;
+  }
+  .m-combobox-search {
+    margin: 10px 0px;
+  }
+  .m-item-search-select {
+  }
+  .m-combobox-search-custom {
+  }
+  .m-combobox-search-custom .multiselect__element :hover {
+    background-color: #9e9e9e;
+  }
+  .m-box-button-left {
+    display: flex;
+    justify-content: end;
+    background-color: #e9e9e9;
+    padding-right: 10px;
+  }
+  .m-box-button-left .m-button {
+    border-radius: 4px;
+    margin: 10px 5px;
+    padding: 0px 16px;
+  }

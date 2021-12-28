@@ -81,7 +81,7 @@ namespace MISA.Fresher.WorkScheduling
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<IEventRepository, EventRepository>();
 
-            /*services.AddScoped<IAuthService , AuthService>();*/
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAuthRepository, AuthRepository>();
         }
 

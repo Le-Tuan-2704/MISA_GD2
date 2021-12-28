@@ -695,6 +695,9 @@
       "MISA.Fresher.WorkScheduling.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "BCrypt.Net-Next": "4.0.2"
+        },
         "compile": {
           "bin/placeholder/MISA.Fresher.WorkScheduling.Core.dll": {}
         },

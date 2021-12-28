@@ -16,7 +16,7 @@ namespace MISA.Fresher.WorkScheduling.Infrastructure.Repository
         #region Fields
         string _connectionString;
         protected MySqlConnection _sqlConnection;
-        string _tableName;
+        protected string _tableName;
         #endregion
 
         #region constructor
@@ -67,7 +67,10 @@ namespace MISA.Fresher.WorkScheduling.Infrastructure.Repository
 
                 if ((propertyType == typeof(Guid) || propertyType == typeof(Guid?)))
                 {
-                    propertyValue = Guid.NewGuid();
+                    if (propertyName == $"{_tableName}Id")
+                    {
+                        propertyValue = Guid.NewGuid();
+                    }
                 }
 
                 parameters.Add($"@p_{propertyName}", propertyValue);
@@ -77,27 +80,16 @@ namespace MISA.Fresher.WorkScheduling.Infrastructure.Repository
 
             return rowsAffected;
         }
-        public async virtual Task<int> Delete(string PotentialCustomerId)
+        public async virtual Task<int> Delete(string tEntityId)
         {
             var rowsAffected = 0;
+            var parameters = new DynamicParameters();
+            parameters.Add($"@p_{_tableName}Id", tEntityId);
 
-            using (var transaction = _sqlConnection.BeginTransaction())
-            {
-                try
-                {
-                    var query = $"DELETE FROM {_tableName} WHERE {_tableName}Id = '{PotentialCustomerId}'";
 
-                    //Thực thi commandText
-                    rowsAffected = await _sqlConnection.ExecuteAsync(query, commandType: CommandType.Text, transaction: transaction);
+            //Thực thi commandText
+            rowsAffected = await _sqlConnection.ExecuteAsync($"Proc_Delete{_tableName}", parameters, commandType: CommandType.StoredProcedure);
 
-                    transaction.Commit();
-                }
-                catch (Exception)
-                {
-                    transaction.Rollback();
-                    throw;
-                }
-            }
 
             return rowsAffected;
         }
@@ -119,9 +111,12 @@ namespace MISA.Fresher.WorkScheduling.Infrastructure.Repository
 
                 if ((propertyType == typeof(Guid) || propertyType == typeof(Guid?)))
                 {
-                    propertyValue = tEntiyId;
-                }
+                    if (propertyName == $"{_tableName}Id")
+                    {
+                        propertyValue = tEntiyId;
+                    }
 
+                }
                 parameters.Add($"@p_{propertyName}", propertyValue);
 
             }

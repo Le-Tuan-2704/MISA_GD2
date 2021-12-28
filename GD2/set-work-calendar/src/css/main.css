@@ -1,0 +1,49 @@
+
+@font-face {
+    font-family: Roboto;
+    src: url("../assets/fonts/Roboto-Regular.ttf");
+}
+@font-face {
+    font-family: Roboto bold;
+    src: url("../assets/fonts/Roboto-Bold.ttf");
+}
+@font-face {
+    font-family: Roboto italic;
+    src: url("../assets/fonts/Roboto-Italic.ttf");
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-family: Roboto;
+}
+
+a{
+    text-decoration: none;
+}
+
+input{
+    font-size: 16px;
+}
+
+.align-left{
+    text-align: left;
+}
+.align-center{
+    text-align: center;
+}
+.align-right{
+    text-align: right;
+}
+
+.m-txt-Primary{
+    color: #4262F0;
+}
+
+/* base */
+/* @import url("./base/button.css");
+@import url("./base/checkbox.css");
+@import url("./base/combobox.css");
+@import url("./base/input.css");
+@import url("./base/notification.css"); */

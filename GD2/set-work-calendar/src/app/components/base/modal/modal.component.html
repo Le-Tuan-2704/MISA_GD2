@@ -1,0 +1,14 @@
+<div class="m-modal" *ngIf="isShow">
+    <div class="m-modal-backdrop" (click)="onBackdropClick($event)"></div>
+    <div class="m-modal-dialog">
+        <div class="m-modal-header">
+            <ng-content select="[slot=header]"></ng-content>
+        </div>
+        <div class="m-modal-body">
+            <ng-content select="[slot=body]"></ng-content>
+        </div>
+        <div class="m-modal-footer">
+            <ng-content select="[slot=footer]"></ng-content>
+        </div>
+    </div>
+</div>

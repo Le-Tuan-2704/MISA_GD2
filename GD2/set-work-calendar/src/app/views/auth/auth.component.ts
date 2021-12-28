@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
 
@@ -39,7 +39,7 @@ export class AuthComponent implements OnInit {
     //Gọi api login từ service 
     this.authService.login(username, password).subscribe(
       resData => {
-        if (!resData.success) {
+        if (!resData.successState) {
           this.error = resData['userMsg']
         }
         else {

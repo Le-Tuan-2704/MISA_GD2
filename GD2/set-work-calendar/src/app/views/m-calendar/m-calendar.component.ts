@@ -54,11 +54,38 @@ export class MCalendarComponent implements OnInit {
         }
       },
 
+      locale: "vi",
+      allDaySlot: false,
+
+      titleFormat: {
+        year: 'numeric',
+        month: '2-digit'
+      },
+      slotDuration: "00:15:00",
+      businessHours: {
+        // các ngày trong tuần. một mảng các số nguyên ngày trong tuần dựa trên 0 (0 = Chủ nhật)
+        daysOfWeek: [1, 2, 3, 4, 5, 6], // Monday - Thursday
+
+        startTime: '08:00', // a start time (10am in this example)
+        endTime: '18:00', // an end time (6pm in this example)
+      },
+
       headerToolbar: {
         left: 'prev,next today myCustomButton',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
       },
+      dayMaxEventRows: 3,
+
+      slotLabelFormat: {
+        hour: 'numeric',
+        minute: '2-digit',
+        omitZeroMinute: false,
+        meridiem: 'short',
+        hour12: false,
+      },
+
+
 
       // chuyển đổi các phương thức
       //click vào khung ngày, khung giờ

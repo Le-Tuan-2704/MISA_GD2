@@ -1,25 +1,27 @@
 <div class="m-header">
-    <div class="m-logo-box">
-        <div class="m-icon m-icon-toggle"></div>
-        <div class="m-icon m-logo">Set work schedule</div>
+    <div class="m-header-left">
+        <div class="m-bg-image m-icon m-logo"></div>
+        <span>MISA Schedule</span>
     </div>
-    <div class="m-header-title-box">
-        <div class="m-header-title-inface">
-            <p>MB</p>
-        </div>
-        <div class="m-header-title">
-            <p>Chi nhánh MISA miền Bắc</p>
-        </div>
-        <div class="m-icon m-icon-16 m-icon-dropdown"></div>
+    <div class="m-header-center">
+
     </div>
-    <div class="m-header-account-box">
-        <div class="m-icon m-icon-24 m-icon-notification"></div>
-        <div class="m-account">
-            <div class="m-account-img m-icon"></div>
-            <div class="m-account-name">
-                <p>Lê Duy Tuân</p>
+    <div class="m-header-right" *ngIf="!isAuthenticated">
+        <div class="m-button m-button-simple btn-login" (click)="onLogin()">Đăng nhập</div>
+    </div>
+    <div class="m-header-right" *ngIf="isAuthenticated">
+        <div class="m-icon m-icon-facebook"></div>
+        <div class="m-icon m-icon-block"></div>
+        <div class="m-icon m-icon-calendar"></div>
+        <div class="m-icon m-icon-notify"></div>
+        <div class="m-icon m-icon-setting"></div>
+        <div class="m-icon m-icon-question"></div>
+        <div class="m-icon m-icon-avatar"></div>
+        <div>
+            <div ngbDropdownMenu aria-labelledby="userInfoDropdown">
+                <div class="username">{{user.username}}</div>
+                <div ngbDropdownItem class="m-button m-button-simple" (click)="onLogout()">Logout</div>
             </div>
         </div>
-        <div class="m-icon m-icon-16 m-account-option"></div>
     </div>
 </div>

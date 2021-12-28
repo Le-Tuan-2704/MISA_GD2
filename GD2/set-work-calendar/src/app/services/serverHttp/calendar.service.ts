@@ -15,19 +15,17 @@ export class CalendarService {
     })
   };
 
-  public REST_API_SERVER = "https://localhost:44373/api"
-
   constructor(private httpClient: HttpClient) { }
 
   public getCalendar(): Observable<any> {
-    const url = `${this.REST_API_SERVER}/Event`;
+    const url = `/Event`;
     return this.httpClient
       .get(url, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
   public addCalendar(data) {
-    const url = `${this.REST_API_SERVER}/Event`;
+    const url = `/Event`;
     return this.httpClient
       .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));

@@ -1,5 +1,10 @@
+:host {
+    flex: 1;
+    display: flex;
+}
 .m-content{
     flex: 1;
     background-color: #fff;
     padding: 20px;
+    overflow: auto;
 }
