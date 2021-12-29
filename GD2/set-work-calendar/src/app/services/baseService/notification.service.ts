@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Notification } from '../models/notification.model';
+import { Notification } from '../../models/notification.model';
 import { v4 as uuid } from 'uuid';
-import { NOTI_TYPE } from '../commons/emuns/notification';
+import { NOTI_TYPE } from '../../commons/emuns/notification';
 
 @Injectable({
   providedIn: 'root'

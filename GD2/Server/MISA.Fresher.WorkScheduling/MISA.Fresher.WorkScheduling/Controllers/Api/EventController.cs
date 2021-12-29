@@ -38,7 +38,19 @@ namespace MISA.Fresher.WorkScheduling.Controllers.Api
             IList<Claim> claim = identity.Claims.ToList();
             var userId = claim[1].Value;
 
-            var res = await _eventService.GetByUserId(userId);
+            var role = int.Parse(claim[2].Value);
+
+            var res = new ServiceResult();
+
+            if (role == 1)
+            {
+                res = await _eventService.GetByUserId(userId);
+            }
+            else if (role == 9)
+            {
+                res = await _eventService.GetAll();
+            }
+
 
             if (res.SuccessState)
             {
@@ -55,8 +67,11 @@ namespace MISA.Fresher.WorkScheduling.Controllers.Api
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             IList<Claim> claim = identity.Claims.ToList();
             var userId = claim[1].Value;
+            var userName = claim[0].Value;
             eventCalendar.employeeId = Guid.Parse(userId);
+            eventCalendar.employeeName = userName;
             eventCalendar.currentStatus = 0;
+
             var res = await _baseService.Insert(eventCalendar);
 
             return Ok(res);

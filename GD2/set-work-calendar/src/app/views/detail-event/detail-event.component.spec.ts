@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MLoadingComponent } from './m-loading.component';
+import { DetailEventComponent } from './detail-event.component';
 
-describe('MLoadingComponent', () => {
-  let component: MLoadingComponent;
-  let fixture: ComponentFixture<MLoadingComponent>;
+describe('DetailEventComponent', () => {
+  let component: DetailEventComponent;
+  let fixture: ComponentFixture<DetailEventComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MLoadingComponent ]
+      declarations: [ DetailEventComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MLoadingComponent);
+    fixture = TestBed.createComponent(DetailEventComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

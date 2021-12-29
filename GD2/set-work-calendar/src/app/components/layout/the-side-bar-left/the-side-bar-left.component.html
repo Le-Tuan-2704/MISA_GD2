@@ -1,16 +1,44 @@
 <div class="m-side-bar-left-main">
     <div class="m-side-bar-left" *ngIf="isSideLeft">
-        <div class="m-side-bar">
-            <div class="m-boloc">BỘ LỌC ĐÃ LƯU</div>
-            <div class="m-boloc-search">
-                <span>LỌC TIỀM NĂNG THEO</span>
-                <div class="m-icon-search"></div>
-            </div>
-        </div>
-        <div class="m-box-button-left">
-            <div class="m-button m-button-simple">Bỏ lọc</div>
-            <div class="m-button m-button-primaty">
-                Áp dụng
+        <div class="m-navbar">
+            <div class="m-menu-box">
+                <div class="m-menu">
+                    <div>
+                        <div class="m-menu-item item-hsdt" [ngClass]="{'m-menu-item-selected':viewCalendar =='MONTH'}"
+                            (click)="onClickItemMenu('MONTH')">
+                            <div class="m-icon m-menu-item-icon"></div>
+                            <p>Lịch Tháng</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="m-menu-item item-hsg" [ngClass]="{'m-menu-item-selected':viewCalendar =='WEEK'}"
+                            (click)="onClickItemMenu('WEEK')">
+                            <div class="m-icon m-menu-item-icon"></div>
+                            <p>Lịch Tuần</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="m-menu-item item-tdc" [ngClass]="{'m-menu-item-selected':viewCalendar =='DAY'}"
+                            (click)="onClickItemMenu('DAY')">
+                            <div class="m-icon m-menu-item-icon"></div>
+                            <p>Lịch Ngày</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="m-menu-item item-tdd" [ngClass]="{'m-menu-item-selected':viewCalendar =='LIST'}"
+                            (click)="onClickItemMenu('LIST')">
+                            <div class="m-icon m-menu-item-icon"></div>
+                            <p>Danh sách hoạt động</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="m-menu-item item-qlld" [ngClass]="{'m-menu-item-selected':viewCalendar =='APPLY'}"
+                            (click)="onClickItemMenu('APPLY')">
+                            <div class="m-icon m-menu-item-icon"></div>
+                            <p>Hoạt động chưa duyệt</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

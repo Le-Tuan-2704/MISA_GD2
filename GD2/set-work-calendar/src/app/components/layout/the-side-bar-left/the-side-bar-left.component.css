@@ -68,13 +68,11 @@
   .m-combobox-search {
     margin: 10px 0px;
   }
-  .m-item-search-select {
-  }
-  .m-combobox-search-custom {
-  }
+  
   .m-combobox-search-custom .multiselect__element :hover {
     background-color: #9e9e9e;
   }
+
   .m-box-button-left {
     display: flex;
     justify-content: end;
@@ -86,3 +84,31 @@
     margin: 10px 5px;
     padding: 0px 16px;
   }
+
+
+  
+.m-menu-box{
+  /* background-color: aliceblue; */
+  position: absolute;
+  top:49px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.m-menu-item{
+  height: 44px;
+  padding-left: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.m-menu-item:hover{
+  background-color: #e5e5e5;
+}
+
+.m-menu-item.m-menu-item-selected{
+  background-color: #019160;
+  color: #fff;
+}

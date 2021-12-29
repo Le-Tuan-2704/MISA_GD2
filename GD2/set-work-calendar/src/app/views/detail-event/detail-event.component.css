@@ -1,0 +1,118 @@
+.event-card-container {
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+}
+.event-card-container > div {
+    height: 100%;
+    width: 100%;
+}
+.event-card-container .no-content {
+    position: relative;
+    border-radius: 4px;
+    background-color: #ddd;
+}
+.event-card-container .no-content span {
+    text-align: center;
+    font-weight: 500;
+    text-transform: uppercase;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 0.7;
+}
+.event-card-container .has-content {
+    box-shadow: 0 4px 8px 0 rgba(241, 119, 4, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    border-radius: 4px;
+    padding: 16px;
+}
+.event-card-container .has-content .label {
+    font-weight: 300;
+}
+.event-card-container .has-content > div {
+    margin-bottom: 8px;
+}
+.event-card-container .has-content .title-row {
+    margin-bottom: 16px;
+}
+.event-card-container .has-content .title-row > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.event-card-container .has-content .title-row > div:first-child .status {
+    gap: 10px;
+}
+.event-card-container .has-content .title-row > div:first-child .status .status-text {
+    position: absolute;
+    top: 80px;
+    right: -25px;
+    font-weight: 300;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    transform: rotate(90deg);
+    line-height: 40px;
+}
+.event-card-container .has-content .title-row > div:first-child .status .status-icon {
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+}
+.event-card-container .has-content .title-row .title {
+    font-size: 1.1rem;
+}
+.event-card-container .has-content .title-row .employee {
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+.event-card-container .has-content .time-row {
+    display: flex;
+    gap: 4px;
+}
+.event-card-container .has-content .approver-row {
+    margin-top: 16px;
+}
+.event-card-container .has-content .description-row {
+    margin-top: 16px;
+    width: 100%;
+}
+.event-card-container .has-content .description-row .label {
+    margin-bottom: 8px;
+}
+.event-card-container .has-content .description-row .description-container {
+    height: 100px;
+    width: 100%;
+    background-color: #eee;
+    padding: 8px;
+    border-radius: 4px;
+    overflow-y: auto;
+}
+.event-card-container .has-content .btn-row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 16px 0 0 0;
+}
+.event-card-container .has-content .btn-row button {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+.event-card-container .has-content .btn-row button i {
+    font-size: 1.3rem;
+    margin-bottom: 1px;
+    color: white;
+}
+.event-card-container .has-content .btn-row button.btn-delete {
+    background-color: #f65454;
+}
+.event-card-container .has-content .btn-row button.btn-approve {
+    background-color: orange;
+}
+.event-card-container .has-content .btn-row button.btn-complete {
+    background-color: #007bff;
+}

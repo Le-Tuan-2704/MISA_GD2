@@ -3,18 +3,16 @@
  */
 export class CalendarEvent {
     constructor(
-        public eventId: string,
+        public eventcalenderId: string,
         public title: string,
         public content: string,
         public start: Date,
         public end: Date,
 
         public employeeId: string,
-        public employeeCode: string,
         public employeeName: string,
 
         public approverId: string,
-        public approverCode: string,
         public approverName: string,
 
         public groupId: string,
@@ -28,7 +26,7 @@ export class CalendarEvent {
     }
 
     get id() {
-        return this.eventId;
+        return this.eventcalenderId;
     }
 
     get startTime() {

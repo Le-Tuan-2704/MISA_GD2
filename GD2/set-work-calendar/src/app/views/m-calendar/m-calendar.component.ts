@@ -1,13 +1,8 @@
-import { Component, forwardRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { FullCalendarComponent } from '@fullcalendar/angular';
-import { CalendarOptions, Calendar } from '@fullcalendar/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import timeGridPlugin from '@fullcalendar/timegrid';
+import { Component, OnInit } from '@angular/core';
+
+import { CalendarEvent } from 'src/app/models/event.model';
+import { BaseServiceService } from 'src/app/services/baseService/base-service.service';
 import { CalendarService } from 'src/app/services/serverHttp/calendar.service';
-import { MCalendarCardComponent } from '../mcalendar-card/mcalendar-card.component';
 
 
 @Component({
@@ -16,130 +11,75 @@ import { MCalendarCardComponent } from '../mcalendar-card/mcalendar-card.compone
   styleUrls: ['./m-calendar.component.css']
 })
 export class MCalendarComponent implements OnInit {
+  public viewCalendar = "MONTH";
 
-  calendarOptions: CalendarOptions;
-  eventsModel: any;
-  // @ViewChild('fullcalendar') fullcalendar: FullCalendarComponent;
-  @ViewChild('fullcalendar', { static: true }) calendarComponent: FullCalendarComponent;
-  @ViewChild('createEvent', { static: true }) createEvent: TemplateRef<any>;
+  //Hiện form thêm mới
+  isAddFormShow = false;
+  //Hiện thông tin chi tiết
+  isEventDetailsShow = false;
 
-  dateForm: FormGroup;
-  eventsCalendar: any[] = [];
-  events: any[] = [];
-  // calendarEvents: EventInput[] = [];
-  calendarPlugins = [dayGridPlugin, timeGridPlugin, interactionPlugin];
-  calendarApi: Calendar;
-  initialized = false;
+  selectingEventId: string = "";
+
+  eventCardLoading = false;
+
+  selectingEvent: CalendarEvent;
+  // {
+  //   if (this.selectingEventId) {
+  //     console.log(this.calendarService.findEventById(this.selectingEventId));
+
+  //     return this.calendarService.findEventById(this.selectingEventId);
+  //   }
+  //   return null;
+  // }
 
   constructor(
-    private calendarHttp: CalendarService,
-    public dialog: MatDialog,
+    private baseService: BaseServiceService,
+    private calendarService: CalendarService
   ) {
 
   }
 
-  ngOnInit() {
-    // cần tải gói lịch trước
-    forwardRef(() => Calendar);
+  ngOnInit(
 
-    this.calendarOptions = {
-      plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-      editable: true,
-      customButtons: {
-        myCustomButton: {
-          text: 'custom!',
-          click: function () {
-            alert('clicked the custom button!');
-          }
-        }
-      },
-
-      locale: "vi",
-      allDaySlot: false,
-
-      titleFormat: {
-        year: 'numeric',
-        month: '2-digit'
-      },
-      slotDuration: "00:15:00",
-      businessHours: {
-        // các ngày trong tuần. một mảng các số nguyên ngày trong tuần dựa trên 0 (0 = Chủ nhật)
-        daysOfWeek: [1, 2, 3, 4, 5, 6], // Monday - Thursday
-
-        startTime: '08:00', // a start time (10am in this example)
-        endTime: '18:00', // an end time (6pm in this example)
-      },
-
-      headerToolbar: {
-        left: 'prev,next today myCustomButton',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      dayMaxEventRows: 3,
-
-      slotLabelFormat: {
-        hour: 'numeric',
-        minute: '2-digit',
-        omitZeroMinute: false,
-        meridiem: 'short',
-        hour12: false,
-      },
-
-
-
-      // chuyển đổi các phương thức
-      //click vào khung ngày, khung giờ
-      dateClick: this.handleDateClick.bind(this),
-      //click vào event
-      eventClick: this.handleEventClick.bind(this),
-      // kéo thả event
-      eventDragStop: this.handleEventDragStop.bind(this),
-
-      events: [],
-    };
-
-    this.calendarHttp.getCalendar().subscribe((datas) => {
-      console.log(datas.data);
-      this.calendarOptions.events = datas.data;
-    })
-  }
-
-  handleDateClick(arg) {
-    console.log("click 1", arg);
-  }
-
-  handleEventClick(arg) {
-    console.log("click 2", arg);
-    let event = arg.view;
-    const dialogRef = this.dialog.open(MCalendarCardComponent, {
-      data: { ...event },
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+  ): void {
+    this.baseService.viewCalendar.subscribe((view) => {
+      this.viewCalendar = view;
     });
   }
 
-  handleEventDragStop(arg) {
-    console.log("click 3", arg);
+  /**
+     * Handle sự kiện từ router view
+     * @param elementRef 
+     */
+  onActivate(elementRef) {
+    // console.log(elementRef.event._def.extendedProps.eventcalendarId);
+    this.showEventDetails(elementRef.event._def.extendedProps.eventcalendarId);
   }
 
-  updateHeader() {
-    this.calendarOptions.headerToolbar = {
-      left: 'prev,next myCustomButton',
-      center: 'title',
-      right: ''
-    };
+  /**
+     * Hiển thị thông tin chi tiết sự kiện
+     * @param id 
+     */
+  showEventDetails(id: string) {
+    this.selectingEventId = id;
+    this.selectingEvent = this.calendarService.events.find((el) => {
+      return el.eventcalenderId == id;
+    });
+    this.isEventDetailsShow = true;
   }
 
-  updateEvents() {
-    const nowDate = new Date();
-    const yearMonth = nowDate.getUTCFullYear() + '-' + (nowDate.getUTCMonth() + 1);
+  /**
+     * Xóa sự kiện
+     * @param id 
+     */
+  deleteEvent(id: string) {
 
-    this.calendarOptions.events = [{
-      title: 'Updaten Event',
-      start: yearMonth + '-08',
-      end: yearMonth + '-10'
-    }];
+  }
+
+  /**
+   * Hoàn thành sự kiện
+   * @param id 
+   */
+  completeEvent(id: string) {
   }
 }

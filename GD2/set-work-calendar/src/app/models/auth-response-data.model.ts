@@ -1,8 +1,7 @@
 export interface AuthResponseData {
     user: {
-        email: string,
-        userId: string,
-        username: string,
+        idUser: string,
+        userName: string,
         role: number,
         avatar: string
     };

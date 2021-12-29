@@ -1,0 +1,58 @@
+<div class="event-card-container">
+    <div *ngIf="!event" class="no-content">
+        <span>Không có dữ liệu hiển thị</span>
+    </div>
+    <div *ngIf="event" class="has-content">
+        <div class="title-row">
+            <div>
+                <div class="label">Tiêu đề</div>
+                <div class="status">
+                    <!-- <div class="status-text">{{statusText}}</div> -->
+                    <div class="status-icon" [title]="statusText" [style]="{backgroundColor: statusColor}"></div>
+                </div>
+            </div>
+            <div class="title">{{event.title}}</div>
+            <div class="employee" *ngIf="mode === 'approve'">Hello</div>
+            <div></div>
+        </div>
+
+        <div class="owner-row">
+        </div>
+
+        <div class="time-row">
+            <div class="label">Bắt đầu: </div>
+            <div>{{event.startTime | date:"dd/MM/yyyy HH:mm"}}</div>
+        </div>
+
+        <div class="time-row">
+            <div class="label">Kết thúc:</div>
+            <div>{{event.endTime | date:"dd/MM/yyyy HH:mm"}}</div>
+        </div>
+
+        <div class="approver-row" *ngIf="event.currentStatus > 0">
+            <div class="label">Nguời phê duyệt</div>
+            <div>{{event.approverName}}</div>
+        </div>
+
+        <div class="description-row">
+            <div class="label">Nội dung chi tiết</div>
+            <div class="description-container">
+                <p>{{event.content}}</p>
+            </div>
+        </div>
+
+        <div class="btn-row">
+            <button class="m-btn btn-delete" title="Xóa" (click)="eventDelete.emit(event.eventcalenderId)">
+                <i class="bi bi-trash"></i>
+            </button>
+            <button class="m-btn btn-approve" title="Duyệt" *ngIf="mode === 'approve'"
+                (click)="eventApprove.emit(event.eventcalenderId)">
+                <i class="bi bi-check2-circle"></i>
+            </button>
+            <button class="m-btn btn-complete" title="Hoàn thành" *ngIf="mode === 'view' && event.currentStatus == 1"
+                (click)="eventComplete.emit(event.eventcalenderId)">
+                <i class="bi bi-journal-check"></i>
+            </button>
+        </div>
+    </div>
+</div>

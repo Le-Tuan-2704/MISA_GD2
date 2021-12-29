@@ -12,7 +12,6 @@ import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid';
 
 import { MCalendarComponent } from './views/m-calendar/m-calendar.component';
-import { MLoadingComponent } from './components/base/m-loading/m-loading.component';
 import { MPopupComponent } from './components/base/m-popup/m-popup.component';
 import { HomeComponent } from './views/home/home.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
@@ -22,7 +21,6 @@ import { TheMenuComponent } from './components/layout/the-menu/the-menu.componen
 import { TheContentComponent } from './components/layout/the-content/the-content.component';
 import { FormCalendarComponent } from './views/form-calendar/form-calendar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MCalendarCardComponent } from './views/mcalendar-card/mcalendar-card.component';
 import { FormsModule } from '@angular/forms';
 
 import { MatDialogModule } from '@angular/material/dialog';
@@ -34,11 +32,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoadingSpinnerComponent } from './components/base/loading-spinner/loading-spinner.component';
 import { NotificationComponent } from './components/base/notification/notification.component';
 import { ModalComponent } from './components/base/modal/modal.component';
-import { AuthInterceptorService } from './services/auth-interceptor.service';
+
 import { TheFuntionComponent } from './components/layout/the-funtion/the-funtion.component';
 import { TheBodyComponent } from './components/layout/the-body/the-body.component';
 import { TheSideBarLeftComponent } from './components/layout/the-side-bar-left/the-side-bar-left.component';
 import { TheSideBarRightComponent } from './components/layout/the-side-bar-right/the-side-bar-right.component';
+import { AuthInterceptorService } from './services/serverHttp/auth-interceptor.service';
+import { DetailEventComponent } from './views/detail-event/detail-event.component';
+import { MonthComponent } from './views/m-calendar/month/month.component';
+import { WeekComponent } from './views/m-calendar/week/week.component';
+import { DayComponent } from './views/m-calendar/day/day.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -50,7 +53,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   declarations: [
     AppComponent,
     MCalendarComponent,
-    MLoadingComponent,
     MPopupComponent,
     HomeComponent,
     NotFoundComponent,
@@ -59,7 +61,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     TheMenuComponent,
     TheContentComponent,
     FormCalendarComponent,
-    MCalendarCardComponent,
     AuthComponent,
     LoadingSpinnerComponent,
     NotificationComponent,
@@ -68,6 +69,10 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     TheBodyComponent,
     TheSideBarLeftComponent,
     TheSideBarRightComponent,
+    DetailEventComponent,
+    MonthComponent,
+    WeekComponent,
+    DayComponent,
 
 
   ],

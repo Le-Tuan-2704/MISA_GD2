@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
-import { AuthResponseData } from '../models/auth-response-data.model';
-import { AppServerResponse } from '../models/service-response.model';
-import { User } from '../models/user.model';
+import { User } from 'src/app/models/user.model';
+import { AuthResponseData } from '../../models/auth-response-data.model';
+import { AppServerResponse } from '../../models/service-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,8 +41,8 @@ export class AuthService {
 
           if (resData.successState) {
             this.handleAuthentication(
-              resData.data.user.userId,
-              resData.data.user.username,
+              resData.data.user.idUser,
+              resData.data.user.userName,
               resData.data.user.avatar,
               resData.data.user.role,
               resData.data.accessToken,
@@ -66,8 +66,8 @@ export class AuthService {
 
     //Cast sang dạng User
     const loadedUser = new User(
-      userData['userId'],
-      userData['username'],
+      userData['idUser'],
+      userData['userName'],
       userData['avatar'],
       userData['role'],
       userData['_accessToken'],

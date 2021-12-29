@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BaseServiceService } from 'src/app/services/baseService/base-service.service';
 
 @Component({
   selector: 'app-the-side-bar-left',
@@ -7,11 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TheSideBarLeftComponent implements OnInit {
 
-  isSideLeft = false;
+  isSideLeft = true;
+  viewCalendar = "MONTH";
 
-  constructor() { }
+  constructor(private baseService: BaseServiceService) { }
 
   ngOnInit(): void {
+    this.baseService.viewCalendar.subscribe((view) => {
+      this.viewCalendar = view;
+    })
   }
 
+  onClickItemMenu(typeCalendar: string) {
+    this.baseService.setViewCalendar(typeCalendar);
+  }
 }

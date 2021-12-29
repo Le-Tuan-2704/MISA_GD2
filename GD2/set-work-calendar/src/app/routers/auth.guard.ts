@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import jwtDecode from "jwt-decode";
 import { Observable } from "rxjs";
 import { map, take } from "rxjs/operators";
-import { AuthService } from "../services/auth.service";
+import { AuthService } from "../services/serverHttp/auth.service";
 
 
 /**

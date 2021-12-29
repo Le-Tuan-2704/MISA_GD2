@@ -7,6 +7,14 @@ body{
     border: none;
     
 }
+button:active{
+    border: none;
+}
+
+button{
+    outline: none;
+    border: none;
+}
 
 p{
     margin: 0 !important;

@@ -96,15 +96,12 @@ namespace MISA.Fresher.WorkScheduling.Core.Services
         {
             try
             {
-
                 //validate entity
                 var isValid = await Validate(tEntity);
                 if (!isValid)
                 {
                     return _serviceResult;
                 }
-
-
 
                 _serviceResult.SuccessState = true;
                 _serviceResult.Data = await _baseRepository.Insert(tEntity);

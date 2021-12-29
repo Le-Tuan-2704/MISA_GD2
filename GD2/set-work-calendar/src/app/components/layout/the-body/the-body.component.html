@@ -1,6 +1,14 @@
 <app-the-funtion></app-the-funtion>
-<div class="m-body">
+<div class="m-body" *ngIf="viewApp =='VIEW'">
     <app-the-side-bar-left></app-the-side-bar-left>
     <app-the-content></app-the-content>
     <app-the-side-bar-right></app-the-side-bar-right>
+</div>
+
+<div class="m-body" *ngIf="viewApp =='ADD'">
+    <app-form-calendar (onSuccess)="onAddFromSuccess()"></app-form-calendar>
+</div>
+
+<div class="m-body" *ngIf="viewApp =='EDIT'">
+    <app-detail-event></app-detail-event>
 </div>

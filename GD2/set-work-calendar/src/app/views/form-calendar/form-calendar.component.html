@@ -1,41 +1,53 @@
-<form [formGroup]="calendarForm" (ngSubmit)="onSubmit()" class="was-validated">
-    <div class="form-group">
-        <label for="uname">Title:</label>
-        <input type="text" class="form-control" id="title" placeholder="Enter title" name="title"
-            formControlName="title" required>
-        <div class="valid-feedback">Valid.</div>
-        <div class="invalid-feedback">Please fill out this field.</div>
+<app-modal [isShow]="true" (isShowChange)="true">
+    <div slot="header">
+        <div class="m-modal-header">Đặt lịch mới</div>
     </div>
-    <div class="form-group">
-        <label for="pwd">Content:</label>
-        <input type="text" class="form-control" id="content" placeholder="Enter content" name="content"
-            formControlName="content" required>
-        <div class="valid-feedback">Valid.</div>
-        <div class="invalid-feedback">Please fill out this field.</div>
-    </div>
+    <div slot="body">
+        <div *ngIf="isLoading" class="loading-container">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+        <div class="m-modal-body">
+            <form #addEventForm="ngForm" class="form-calendar-add-event" ngCa (ngSubmit)="onSubmit(addEventForm)">
+                <div class="input-box">
+                    <label for="title-content" required>Tiêu đề</label>
+                    <input class="form-control" name="title" id="title-field" placeholder="Tiêu đề" ngModel required>
+                </div>
+                <div class="input-box">
+                    <label for="content-field">Nội dung</label>
+                    <textarea class="form-control" name="content" id="content-field" placeholder="Nội dung chi tiết"
+                        ngModel></textarea>
+                </div>
+                <div class="datetime-container">
+                    <div class="input-box input-left">
+                        <label for="start-date-field" required>Ngày bắt đầu</label>
+                        <input type="date" class="form-control" name="startDate" id="start-date-field" required
+                            placeholder="dd/mm/yyyy" ngModel>
+                    </div>
+                    <div class="input-box input-left">
+                        <label for="start-date-time-field" required>Thời gian bắt đầu</label>
+                        <input type="time" class="form-control" name="startTime" id="start-date-time-field" required
+                            placeholder="dd/mm/yyyy" ngModel>
+                    </div>
+                </div>
+                <div class="datetime-container  last-row">
+                    <div class="input-box input-right">
+                        <label for="end-date-field" required>Ngày kết thúc</label>
+                        <input type="date" class="form-control" name="endDate" id="end-date-field" required ngModel>
+                    </div>
 
-    <div class="form-group">
-        <label for="pwd">Start Time:</label>
-        <input type="datetime-local" class="form-control" id="start" placeholder="Enter start time" name="start"
-            formControlName="start" required>
-        <div class="valid-feedback">Valid.</div>
-        <div class="invalid-feedback">Please fill out this field.</div>
+                    <div class="input-box input-right">
+                        <label for="end-date-time-field" required>Thời gian kết thúc</label>
+                        <input type="time" class="form-control" name="endTime" id="end-date-time-field" required
+                            ngModel>
+                    </div>
+                </div>
+                <span class="form-warning" id="form-warning">{{error}}</span>
+                <div class="form-btns-container">
+                    <button class="m-button m-button-simple" (click)="cancelFormAdd()">Hủy</button>
+                    <button class="m-button m-button-primaty" type="submit"
+                        [disabled]="!addEventForm.valid">Lưu</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="pwd">End Time:</label>
-        <input type="datetime-local" class="form-control" id="end" placeholder="Enter end time" name="end"
-            formControlName="end" required>
-        <div class="valid-feedback">Valid.</div>
-        <div class="invalid-feedback">Please fill out this field.</div>
-    </div>
-
-    <div class="form-group form-check">
-        <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" name="remember" formControlName="checkbox"> I agree
-            on blabla.
-            <div class="valid-feedback">Valid.</div>
-            <div class="invalid-feedback">Check this checkbox to continue.</div>
-        </label>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!calendarForm.valid">Submit</button>
-</form>
+</app-modal>

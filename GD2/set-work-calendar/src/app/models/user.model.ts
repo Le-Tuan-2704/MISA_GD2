@@ -5,8 +5,8 @@ import jwtDecode from "jwt-decode";
  */
 export class User {
     constructor(
-        public id: string,
-        public username: string,
+        public idUser: string,
+        public userName: string,
         public avatar: string,
         public role: number,
 

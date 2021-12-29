@@ -19,8 +19,7 @@
         <div class="m-icon m-icon-avatar"></div>
         <div>
             <div ngbDropdownMenu aria-labelledby="userInfoDropdown">
-                <div class="username">{{user.username}}</div>
-                <div ngbDropdownItem class="m-button m-button-simple" (click)="onLogout()">Logout</div>
+                <div ngbDropdownItem class="m-button m-button-simple" (click)="onLogout()">{{user.userName}}</div>
             </div>
         </div>
     </div>

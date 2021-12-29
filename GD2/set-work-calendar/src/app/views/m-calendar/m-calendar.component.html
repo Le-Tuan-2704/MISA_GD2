@@ -1,3 +1,10 @@
-<full-calendar class="full-calendar" [options]="calendarOptions"></full-calendar>
-<!-- [deepChangeDetection]="true" *ngIf="calendarOptions" ([events])="eventsCalendar"
-    #fullcalendar -->
+<app-day *ngIf="viewCalendar=='DAY'" (eventClick)="onActivate($event)"></app-day>
+<app-week *ngIf=" viewCalendar=='WEEK'" (eventClick)="onActivate($event)"></app-week>
+<app-month *ngIf=" viewCalendar=='MONTH'" (eventClick)="onActivate($event)"></app-month>
+<app-modal [isShow]="isEventDetailsShow" (isShowChange)="isEventDetailsShow=$event">
+    <div slot="body" class="event-dialog">
+        <app-detail-event [event]="selectingEvent" (eventClose)="isEventDetailsShow = false"
+            (eventDelete)="deleteEvent($event)" (eventComplete)="completeEvent($event)">
+        </app-detail-event>
+    </div>
+</app-modal>
